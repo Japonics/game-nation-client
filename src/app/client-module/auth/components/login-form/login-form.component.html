@@ -1,0 +1,18 @@
+<div class="form-wrapper">
+  <header class="app-intro">
+    {{ 'APP.NAME' | translate }}
+  </header>
+  <div class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput formControlName="username" [placeholder]="'AUTH.USERNAME' | translate"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="password" [placeholder]="'AUTH.PASSWORD' | translate"/>
+      </mat-form-field>
+      <button type="submit" [disabled]="!loginForm.valid" mat-raised-button>
+        {{ 'AUTH.LOG_IN' | translate }}
+      </button>
+    </form>
+  </div>
+</div>

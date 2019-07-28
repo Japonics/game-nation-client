@@ -1,9 +1,15 @@
 {
-  "FOOTER": {
-    "SPONSORS": "Sponsorzy",
-    "ABOUT_US_DETAILS": "Jesteśmy jednym z największym dystrybutorów gier w Polsce. Jesteśmy na rynku od 2004 roku.",
-    "LOCATION": "Bielsko-Biała",
-    "NUMBER":  "+48 503 503 503",
-    "EMAIL": "contact@game-nation.com.pl"
+  "APP": {
+    "NAME": "GAME Nation"
+  },
+  "AUTH": {
+    "LOGIN": "Logowanie",
+    "REGISTER": "Rejestracja",
+    "USERNAME": "Nazwa użytkownika",
+    "PASSWORD": "Hasło",
+    "LOG_IN": "Zaloguj",
+    "SIGN_IN": "Zarejestruj",
+    "EMAIL": "Adres e-mail",
+    "PASSWORD_CONFIRM": "Powtórz hasło"
   }
 }

@@ -10,9 +10,11 @@ import {ClientModule} from './client-module/client.module';
 import {AdminModule} from './admin-module/admin.module';
 import {AppOutletComponent} from './core-module/components/app-outlet/app-outlet.component';
 import {AuthManagerService} from './core-module/services/auth-manager.service';
-import {BaseHttpClient} from './core-module/services/base-http-client';
 import {IsAuthorizedGuard} from './core-module/guards/is-authorized.guard';
 import {IsAdminGuard} from './core-module/guards/is-admin.guard';
+import {HttpClientService} from './core-module/services/http-client.service';
+import {NotificationService} from './core-module/services/notification.service';
+import {MatSnackBarModule} from '@angular/material';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,11 +35,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     HttpClientModule,
     ClientModule,
+    MatSnackBarModule,
     AdminModule
   ],
   providers: [
     HttpClient,
-    BaseHttpClient,
+    HttpClientService,
+    NotificationService,
     AuthManagerService,
     IsAuthorizedGuard,
     IsAdminGuard

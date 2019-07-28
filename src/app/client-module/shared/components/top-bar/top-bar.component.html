@@ -1,3 +1,17 @@
 <mat-toolbar color="primary">
 
+  <div class="avatar-container">
+    <img src=""/>
+    <p></p>
+  </div>
+
+  <div class="login-action-container" *ngIf="!isAuthorized">
+    <a [routerLink]="['/login']">
+      <p>{{ 'AUTH.LOGIN' | translate }}</p>
+    </a>
+    <a [routerLink]="['/register']">
+      <p>{{ 'AUTH.REGISTER' | translate }}</p>
+    </a>
+  </div>
+
 </mat-toolbar>

@@ -1,0 +1,36 @@
+<div class="form-wrapper">
+  <header class="app-intro">
+    {{ 'APP.NAME' | translate }}
+  </header>
+  <div class="form-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" [appMatchValue]="['password', 'confirmPassword']">
+      <mat-form-field>
+        <input matInput formControlName="username" [placeholder]="'AUTH.USERNAME' | translate"/>
+        <ng-container *ngIf="registerForm.controls.username.errors">
+          <mat-error *ngIf="registerForm.controls.username.errors.required">{{ 'VALIDATOR.IS_REQUIRED' }}</mat-error>
+        </ng-container>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="email" [placeholder]="'AUTH.EMAIL' | translate"/>
+        <ng-container *ngIf="registerForm.controls.email.errors">
+          <mat-error *ngIf="registerForm.controls.email.errors.required">{{ 'VALIDATOR.IS_REQUIRED' }}</mat-error>
+        </ng-container>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="password" [placeholder]="'AUTH.PASSWORD' | translate" type="password"/>
+        <ng-container *ngIf="registerForm.controls.password.errors">
+          <mat-error *ngIf="registerForm.controls.password.errors.required">{{ 'VALIDATOR.IS_REQUIRED' }}</mat-error>
+        </ng-container>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="confirmPassword" [placeholder]="'AUTH.PASSWORD_CONFIRM' | translate" type="password"/>
+        <ng-container *ngIf="registerForm.controls.confirmPassword.errors">
+          <mat-error *ngIf="registerForm.controls.confirmPassword.errors.required">{{ 'VALIDATOR.IS_REQUIRED' }}</mat-error>
+        </ng-container>
+      </mat-form-field>
+      <button type="submit" [disabled]="!registerForm.valid" mat-raised-button>
+        {{ 'AUTH.SIGN_IN' | translate }}
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthManagerService} from '../../../../core-module/services/auth-manager.service';
+import {IUser} from '../../../auth/interfaces/user.interface';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,9 +9,22 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class TopBarComponent implements OnInit {
-  constructor() {
+
+  public isAuthorized: boolean = false;
+  public user: IUser = null;
+
+  constructor(private _authManagerService: AuthManagerService) {
+    this._authManagerService
+      .isAuthorized()
+      .then(
+        () => {
+          this.user = this._authManagerService.getUser();
+          this.isAuthorized = true;
+        },
+        () => this.isAuthorized = false
+      );
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 }
