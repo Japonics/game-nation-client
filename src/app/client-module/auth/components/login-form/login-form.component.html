@@ -1,14 +1,20 @@
 <div class="form-wrapper">
   <header class="app-intro">
-    {{ 'APP.NAME' | translate }}
+    <img class="logo" alt="GAME Nation" src="../../../../../assets/images/logo_transparent.png"/>
   </header>
   <div class="form-container">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-form-field>
         <input matInput formControlName="username" [placeholder]="'AUTH.USERNAME' | translate"/>
+        <mat-error *ngIf="loginForm.controls.username.errors && loginForm.controls.username.errors.required">
+          {{ 'VALIDATOR.IS_REQUIRED' | translate }}
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput formControlName="password" [placeholder]="'AUTH.PASSWORD' | translate"/>
+        <input matInput formControlName="password" type="password" [placeholder]="'AUTH.PASSWORD' | translate"/>
+        <mat-error *ngIf="loginForm.controls.password.errors && loginForm.controls.password.errors.required">
+          {{ 'VALIDATOR.IS_REQUIRED' | translate }}
+        </mat-error>
       </mat-form-field>
       <button type="submit" [disabled]="!loginForm.valid" mat-raised-button>
         {{ 'AUTH.LOG_IN' | translate }}

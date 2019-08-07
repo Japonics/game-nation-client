@@ -12,10 +12,11 @@
     padding: 30px 50px;
 
     .app-intro {
-      font-size: 28px;
-      color: $primary-theme-color;
-      text-align: center;
       margin: 20px 0;
+
+      img {
+        max-width: 100%;
+      }
     }
 
     .form-container {
@@ -28,7 +29,8 @@
         }
 
         .mat-form-field {
-          width: 250px;
+          width: 100%;
+          margin: 10px 0;
         }
 
         input {

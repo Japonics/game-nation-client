@@ -1,12 +1,13 @@
 <div class="content-wrapper">
   <div class="form-container">
-    <mat-tab-group>
-      <mat-tab [label]="'AUTH.LOGIN' | translate" [routerLink]="['/login']">
-        <app-login-form></app-login-form>
-      </mat-tab>
-      <mat-tab [label]="'AUTH.REGISTER' | translate" [routerLink]="['/register']">
-        <app-register-form></app-register-form>
-      </mat-tab>
-    </mat-tab-group>
+    <div class="tabs-container">
+      <div class="tabs-head">
+        <p [routerLink]="['/login']" routerLinkActive="active">{{ 'AUTH.LOGIN' | translate }}</p>
+        <p [routerLink]="['/register']" routerLinkActive="active">{{ 'AUTH.REGISTER' | translate }}</p>
+      </div>
+      <div class="tabs-body">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
 </div>

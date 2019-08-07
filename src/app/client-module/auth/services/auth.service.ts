@@ -37,7 +37,7 @@ export class AuthService implements IAuthService {
               id: response.user.id,
               username: response.user.username,
               email: response.user.email,
-              is_admin: response.user.is_admin
+              isAdmin: response.user.isAdmin
             },
             token: response.token
           };
@@ -61,5 +61,9 @@ export class AuthService implements IAuthService {
         map(item => item),
         catchError(err => err)
       );
+  }
+
+  public logout(): void {
+    this._httpClientService.clearToken();
   }
 }

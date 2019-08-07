@@ -3,9 +3,12 @@ import {USER_STORAGE_KEY, USER_TOKEN_KEY} from '../constants/app.constants';
 import {HttpClientService} from './http-client.service';
 import {IUser} from '../../client-module/auth/interfaces/user.interface';
 import {IAuthenticated} from '../../client-module/auth/interfaces/authenticated.interface';
+import {Subject} from 'rxjs';
 
 @Injectable()
 export class AuthManagerService {
+
+  public onLogIn: Subject<IUser> = new Subject<IUser>();
 
   private _user: IUser = null;
 
@@ -21,6 +24,8 @@ export class AuthManagerService {
     localStorage.setItem(USER_TOKEN_KEY, authenticated.token);
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(authenticated.user));
     this._user = Object.assign({}, authenticated.user);
+
+    this.onLogIn.next(Object.assign({}, authenticated.user));
   }
 
   public logout(): Promise<boolean> {
@@ -62,7 +67,7 @@ export class AuthManagerService {
         this._user = JSON.parse(user);
       }
 
-      if (this._user.is_admin) {
+      if (this._user.isAdmin) {
         resolve(true);
       }
 

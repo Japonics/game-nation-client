@@ -54,4 +54,16 @@ body {
   width: 100vw;
   height: 100vh;
   display: block;
+  font-family: 'Roboto', sans-serif;
+}
+
+*,
+*:hover,
+*:active,
+*:focus {
+  outline: none;
+}
+
+input {
+  color: #222 !important;
 }

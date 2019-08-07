@@ -10,6 +10,17 @@
     "LOG_IN": "Zaloguj",
     "SIGN_IN": "Zarejestruj",
     "EMAIL": "Adres e-mail",
-    "PASSWORD_CONFIRM": "Powtórz hasło"
+    "PASSWORD_CONFIRM": "Powtórz hasło",
+    "LOG_OUT": "Wyloguj"
+  },
+  "USER": {
+    "PROFILE": "Mój profil",
+    "ADMIN_DASHBOARD": "Panel zarządzania"
+  },
+  "INTERFACE": {
+    "SEARCH": "Szukaj..."
+  },
+  "VALIDATOR": {
+    "IS_REQUIRED": "Pole jest wymagane"
   }
 }

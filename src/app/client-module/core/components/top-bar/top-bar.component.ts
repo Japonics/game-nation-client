@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthManagerService} from '../../../../core-module/services/auth-manager.service';
 import {IUser} from '../../../auth/interfaces/user.interface';
 
@@ -7,8 +7,7 @@ import {IUser} from '../../../auth/interfaces/user.interface';
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
-
-export class TopBarComponent implements OnInit {
+export class TopBarComponent {
 
   public isAuthorized: boolean = false;
   public user: IUser = null;
@@ -23,8 +22,28 @@ export class TopBarComponent implements OnInit {
         },
         () => this.isAuthorized = false
       );
+
+    this._authManagerService.onLogIn.subscribe((user) => {
+      this.user = this._authManagerService.getUser();
+      this.isAuthorized = true;
+    });
   }
 
-  public ngOnInit(): void {
+  public logout(): void {
+    this._authManagerService.logout()
+      .then(
+        () => {
+          this.isAuthorized = false;
+          this.user = null;
+        }
+      );
+  }
+
+  public searchResult(data: any): void {
+    console.log('test');
+  }
+
+  get userAvatar(): string {
+    return '';
   }
 }

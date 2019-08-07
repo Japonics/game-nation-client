@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
-import {TopBarComponent} from './shared/components/top-bar/top-bar.component';
+import {TopBarComponent} from './core/components/top-bar/top-bar.component';
 import {AuthOutletComponent} from './auth/components/auth-outlet/auth-outlet.component';
 import {TranslateModule} from '@ngx-translate/core';
 import {
   MatButtonModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatMenuModule,
   MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
-import {ClientOutletComponent} from './core/client-outlet/client-outlet.component';
+import {ClientOutletComponent} from './core/components/client-outlet/client-outlet.component';
 import {LoginFormComponent} from './auth/components/login-form/login-form.component';
 import {RegisterFormComponent} from './auth/components/register-form/register-form.component';
 import {RouterModule} from '@angular/router';
@@ -36,7 +36,8 @@ import {UIModule} from '../ui-module/ui.module';
     MatToolbarModule,
     ReactiveFormsModule,
     MatButtonModule,
-    UIModule
+    UIModule,
+    MatMenuModule
   ],
   providers: [
     AuthService
