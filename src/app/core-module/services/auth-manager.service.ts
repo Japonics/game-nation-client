@@ -56,22 +56,18 @@ export class AuthManagerService {
 
   public isAdmin(): Promise<boolean> {
     return new Promise(((resolve, reject) => {
-
-      if (this._user === null) {
-        const user: string = localStorage.getItem(USER_STORAGE_KEY);
-
-        if (user === null) {
-          reject(false);
-        }
-
-        this._user = JSON.parse(user);
+      if (this._user !== null) {
+        this._user.isAdmin ? resolve() : reject();
       }
 
-      if (this._user.isAdmin) {
-        resolve(true);
+      const user: string = localStorage.getItem(USER_STORAGE_KEY);
+
+      if (user === null) {
+        reject();
       }
 
-      reject(false);
+      this._user = JSON.parse(user);
+      this._user.isAdmin ? resolve() : reject();
     }));
   }
 }
