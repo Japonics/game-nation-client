@@ -8,13 +8,22 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ClientModule} from './client-module/client.module';
 import {AdminModule} from './admin-module/admin.module';
-import {AppOutletComponent} from './core-module/components/app-outlet/app-outlet.component';
-import {AuthManagerService} from './core-module/services/auth-manager.service';
-import {IsAuthorizedGuard} from './core-module/guards/is-authorized.guard';
-import {IsAdminGuard} from './core-module/guards/is-admin.guard';
-import {HttpClientService} from './core-module/services/http-client.service';
-import {NotificationService} from './core-module/services/notification.service';
-import {MatSnackBarModule} from '@angular/material';
+import {AppOutletComponent} from './@theme/components/app-outlet/app-outlet.component';
+import {HttpClientService} from './@core/services/http-client.service';
+import {NotificationService} from './@core/services/notification.service';
+import {ThemeModule} from './@theme/theme.module';
+import {CoreModule} from './@core/core.module';
+import {
+  NbDatepickerModule,
+  NbDialogModule,
+  NbMenuModule,
+  NbOverlayService,
+  NbSidebarModule,
+  NbToastrModule,
+  NbWindowModule
+} from '@nebular/theme';
+import {AnalyticsService} from './@core/utils/analytics.service';
+import {LayoutService} from './@core/utils/layout.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -34,17 +43,24 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     HttpClientModule,
+    CoreModule.forRoot(),
+    ThemeModule.forRoot(),
+    NbSidebarModule.forRoot(),
+    NbMenuModule.forRoot(),
+    NbDatepickerModule.forRoot(),
+    NbDialogModule.forRoot(),
+    NbWindowModule.forRoot(),
+    NbToastrModule.forRoot(),
     ClientModule,
-    MatSnackBarModule,
     AdminModule
   ],
   providers: [
     HttpClient,
     HttpClientService,
     NotificationService,
-    AuthManagerService,
-    IsAuthorizedGuard,
-    IsAdminGuard
+    AnalyticsService,
+    NbOverlayService,
+    LayoutService
   ],
   declarations: [
     AppComponent,

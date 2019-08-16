@@ -1,0 +1,48 @@
+<div>
+  <div class="top-bar">
+    <div class="logo-container" [routerLink]="['/']"></div>
+
+    <div class="browser-container">
+      <form (ngSubmit)="searchResult($event)">
+        <input nbInput [placeholder]="'INTERFACE.SEARCH' | translate" type="text" class="example-right-align"/>
+        <span>
+        <nb-icon icon="search"></nb-icon>
+      </span>
+      </form>
+    </div>
+
+    <div class="login-action-container" *ngIf="!isAuthorized">
+      <button nbButton [routerLink]="['/login']">
+        {{ 'AUTH.LOGIN' | translate }}
+      </button>
+      <button nbButton [routerLink]="['/register']">
+        {{ 'AUTH.REGISTER' | translate }}
+      </button>
+    </div>
+
+    <div class="user-details-container" *ngIf="isAuthorized">
+      <nb-action class="user-action">
+        <nb-user [nbContextMenu]="menu"
+                 [onlyPicture]="false"
+                 [name]="user?.username"
+                 [picture]="user?.username">
+        </nb-user>
+      </nb-action>
+    </div>
+  </div>
+</div>
+
+<!--<ng-template #appMenu>-->
+<!--  <nb-list>-->
+<!--    <nb-list-item [routerLink]="['/profile']">-->
+<!--      {{ 'USER.PROFILE' | translate}}-->
+<!--    </nb-list-item>-->
+<!--    <nb-list-item *ngIf="user && user.isAdmin" [routerLink]="['/admin', 'dashboard']">-->
+<!--      {{ 'USER.ADMIN_DASHBOARD' | translate }}-->
+<!--    </nb-list-item>-->
+<!--    <nb-list-item (click)="logout()">-->
+<!--      {{ 'AUTH.LOG_OUT' | translate }}-->
+<!--    </nb-list-item>-->
+<!--  </nb-list>-->
+<!--</ng-template>-->
+

@@ -1,0 +1,29 @@
+<div class="form-wrapper">
+  <header class="app-intro">
+    <img class="logo" alt="GAME Nation" src="../../../../assets/images/logo_transparent.png"/>
+  </header>
+  <div class="form-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" [appMatchValue]="['password', 'confirmPassword']">
+      <input nbInput formControlName="username" [placeholder]="'AUTH.USERNAME' | translate"/>
+      <nb-alert status="danger" *ngIf="hasError('username', 'required')">
+        {{ 'VALIDATOR.IS_REQUIRED' | translate }}
+      </nb-alert>
+      <input nbInput formControlName="email" [placeholder]="'AUTH.EMAIL' | translate"/>
+      <nb-alert status="danger" *ngIf="hasError('email', 'required')">
+        {{ 'VALIDATOR.IS_REQUIRED' | translate }}
+      </nb-alert>
+      <input nbInput formControlName="password" [placeholder]="'AUTH.PASSWORD' | translate" type="password"/>
+      <nb-alert status="danger" *ngIf="hasError('password', 'required')">
+        {{ 'VALIDATOR.IS_REQUIRED' | translate }}
+      </nb-alert>
+      <input nbInput formControlName="confirmPassword" [placeholder]="'AUTH.PASSWORD_CONFIRM' | translate"
+             type="password"/>
+      <nb-alert status="danger" *ngIf="hasError('confirmPassword', 'required')">
+        {{ 'VALIDATOR.IS_REQUIRED' | translate }}
+      </nb-alert>
+      <button type="submit" [disabled]="!registerForm.valid" nbButton>
+        {{ 'AUTH.SIGN_IN' | translate }}
+      </button>
+    </form>
+  </div>
+</div>

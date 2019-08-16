@@ -1,0 +1,10 @@
+@import '../../styles/themes';
+@import '../../../../../node_modules/@nebular/theme/styles/global/breakpoints';
+@import '../../../../../node_modules/bootstrap/scss/mixins/breakpoints';
+
+@include nb-install-component() {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

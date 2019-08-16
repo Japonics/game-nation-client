@@ -1,0 +1,20 @@
+<div class="form-wrapper">
+  <header class="app-intro">
+    <img class="logo" alt="GAME Nation" src="../../../../assets/images/logo_transparent.png"/>
+  </header>
+  <div class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input nbInput formControlName="username" [placeholder]="'AUTH.USERNAME' | translate"/>
+      <nb-alert status="danger" *ngIf="hasError('password', 'required')">
+        {{ 'VALIDATOR.IS_REQUIRED' | translate }}
+      </nb-alert>
+      <input nbInput formControlName="password" type="password" [placeholder]="'AUTH.PASSWORD' | translate"/>
+      <nb-alert status="danger" *ngIf="hasError('password', 'required')">
+        {{ 'VALIDATOR.IS_REQUIRED' | translate }}
+      </nb-alert>
+      <button type="submit" [disabled]="!loginForm.valid" nbButton>
+        {{ 'AUTH.LOG_IN' | translate }}
+      </button>
+    </form>
+  </div>
+</div>
