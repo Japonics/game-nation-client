@@ -10,27 +10,26 @@ import {NbAuthService} from '@nebular/auth';
 })
 export class TopBarComponent {
 
-  public isAuthorized: boolean = false;
+  public isAuthenticated: boolean = false;
   public user: IUser = null;
   public menu: NbMenuItem[] = [
     {title: 'test', link: ''},
   ];
+  public userPictureOnly: boolean = false;
 
-  constructor(private _authService: NbAuthService) {
-    this._authService
+  constructor(private _nbAuthService: NbAuthService) {
+    this._nbAuthService
       .isAuthenticated()
       .subscribe(
-        () => {
-          // this.user = this._authService.get();
-          // this.isAuthorized = true;
+        (isAuthenticated) => {
+          this.isAuthenticated = isAuthenticated;
+          this._nbAuthService.getToken()
+            .subscribe(token => {
+              this.user = token.getPayload();
+            });
         },
-        () => this.isAuthorized = false
+        () => this.isAuthenticated = false
       );
-
-    // this._authService. onLogIn.subscribe((user) => {
-    //   this.user = this._authService.getUser();
-    //   this.isAuthorized = true;
-    // });
 
     this.menu = [
       {title: 'USER.PROFILE', link: '/profile'},
@@ -41,13 +40,8 @@ export class TopBarComponent {
   }
 
   public logout(): void {
-    // this._authService.logout()
-    //   .then(
-    //     () => {
-    //       this.isAuthorized = false;
-    //       this.user = null;
-    //     }
-    //   );
+    // TODO add const for auth strategy
+    this._nbAuthService.logout('username');
   }
 
   public searchResult(data: any): void {

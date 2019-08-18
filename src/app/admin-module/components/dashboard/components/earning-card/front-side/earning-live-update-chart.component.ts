@@ -28,13 +28,13 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
       .subscribe(() => this.resizeChart());
   }
 
-  ngOnChanges(): void {
+  public ngOnChanges(): void {
     if (this.option) {
       this.updateChartOptions(this.liveUpdateChartData);
     }
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     this.theme.getJsTheme()
       .pipe(
         delay(1),
@@ -47,7 +47,11 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
       });
   }
 
-  setChartOption(earningLineTheme) {
+  public ngOnDestroy(): void {
+    this._alive = false;
+  }
+
+  public setChartOption(earningLineTheme): void {
     this.option = {
       grid: {
         left: 0,
@@ -138,7 +142,7 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
     };
   }
 
-  updateChartOptions(chartData: { value: [string, number] }[]) {
+  public updateChartOptions(chartData: { value: [string, number] }[]): void {
     this.echartsInstance.setOption({
       series: [{
         data: chartData,
@@ -146,17 +150,13 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
     });
   }
 
-  onChartInit(ec) {
+  public onChartInit(ec): void {
     this.echartsInstance = ec;
   }
 
-  resizeChart() {
+  public resizeChart(): void {
     if (this.echartsInstance) {
       this.echartsInstance.resize();
     }
-  }
-
-  ngOnDestroy() {
-    this._alive = false;
   }
 }

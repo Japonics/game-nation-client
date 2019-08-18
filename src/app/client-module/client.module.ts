@@ -16,11 +16,15 @@ import {ProfilePageOutletComponent} from './components/profile-page/profile-page
 import {
   NbActionsModule,
   NbAlertModule,
-  NbButtonModule, NbContextMenuModule,
+  NbButtonModule,
+  NbContextMenuModule,
   NbIconModule,
-  NbInputModule,
-  NbListModule, NbOverlayService,
-  NbPopoverModule, NbUserModule
+  NbInputModule, NbLayoutModule,
+  NbListModule,
+  NbOverlayService,
+  NbPopoverModule,
+  NbSearchModule,
+  NbUserModule
 } from '@nebular/theme';
 import {NbAuthModule} from '@nebular/auth';
 import {ThemeModule} from '../@theme/theme.module';
@@ -41,7 +45,9 @@ const MODULES = [
   NbUserModule,
   NbContextMenuModule,
   NbAuthModule,
-  ThemeModule
+  ThemeModule,
+  NbSearchModule,
+  NbLayoutModule
 ];
 
 const SERVICES = [

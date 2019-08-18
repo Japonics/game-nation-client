@@ -1,6 +1,6 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
+import {NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
 import {NbSecurityModule, NbRoleProvider} from '@nebular/security';
 import {of as observableOf} from 'rxjs';
 
@@ -46,6 +46,8 @@ import {StatsProgressBarService} from './mock/stats-progress-bar.service';
 import {VisitorsAnalyticsService} from './mock/visitors-analytics.service';
 import {SecurityCamerasService} from './mock/security-cameras.service';
 import {MockDataModule} from './mock/mock-data.module';
+import {environment} from '../../environments/environment';
+import {IsAuthenticatedGuard} from './guards/is-authenticated.guard';
 
 const DATA_SERVICES = [
   {provide: UserData, useClass: UserService},
@@ -83,7 +85,26 @@ export const NB_CORE_PROVIDERS = [
 
     strategies: [
       NbPasswordAuthStrategy.setup({
-        name: 'username'
+        name: 'username',
+        baseEndpoint: environment.baseUrl + '/api/auth',
+        token: {
+          class: NbAuthJWTToken,
+          key: 'token',
+        },
+        login: {
+          endpoint: '/authenticate',
+          redirect: {
+            success: '',
+            failure: null,
+          },
+        },
+        register: {
+          endpoint: '/register',
+          redirect: {
+            success: '/login',
+            failure: null
+          }
+        }
       }),
     ],
   }).providers,
@@ -110,7 +131,8 @@ export const NB_CORE_PROVIDERS = [
     provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
   },
   AnalyticsService,
-  LayoutService
+  LayoutService,
+  IsAuthenticatedGuard
 ];
 
 @NgModule({

@@ -22,5 +22,15 @@
   },
   "VALIDATOR": {
     "IS_REQUIRED": "Pole jest wymagane"
+  },
+  "NAV": {
+    "DASHBOARD":  "Dashboard",
+    "MANAGEMENT": "Zarządzanie",
+    "GAMES":  "Gry",
+    "CATEGORIES":  "Kategorie",
+    "ORDERS": "Zamówienia",
+    "MANAGE":  "Zarządzaj",
+    "ADMINS": "Administratorzy",
+    "USERS": "Użytkownicy"
   }
 }

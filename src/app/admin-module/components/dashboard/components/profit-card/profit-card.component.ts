@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-profit-card',
-  styleUrls: ['./profit-card.component.scss'],
   templateUrl: './profit-card.component.html',
+  styleUrls: ['./profit-card.component.scss'],
 })
 export class ProfitCardComponent {
 
-  flipped = false;
+  public flipped = false;
 
-  toggleView() {
+  public toggleView(): void {
     this.flipped = !this.flipped;
   }
 }

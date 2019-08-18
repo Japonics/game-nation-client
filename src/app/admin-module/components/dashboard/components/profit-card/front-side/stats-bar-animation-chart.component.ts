@@ -9,28 +9,28 @@ import {LayoutService} from '../../../../../../@core/utils/layout.service';
 })
 export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy {
 
-  private alive = true;
-
   @Input() linesData: { firstLine: number[]; secondLine: number[] } = {
     firstLine: [],
     secondLine: [],
   };
 
-  echartsIntance: any;
-  options: any = {};
+  public echartsIntance: any;
+  public options: any = {};
+
+  private _alive = true;
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
     this.layoutService.onChangeLayoutSize()
       .pipe(
-        takeWhile(() => this.alive),
+        takeWhile(() => this._alive),
       )
       .subscribe(() => this.resizeChart());
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     this.theme.getJsTheme()
-      .pipe(takeWhile(() => this.alive))
+      .pipe(takeWhile(() => this._alive))
       .subscribe(config => {
         const profitBarAnimationEchart: any = config.variables.profitBarAnimationEchart;
 
@@ -38,7 +38,11 @@ export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy
       });
   }
 
-  setChartOption(chartVariables) {
+  public ngOnDestroy(): void {
+    this._alive = false;
+  }
+
+  public setChartOption(chartVariables): void {
     this.options = {
       color: [
         chartVariables.firstAnimationBarColor,
@@ -131,17 +135,13 @@ export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy
     };
   }
 
-  onChartInit(echarts) {
-    this.echartsIntance = echarts;
+  public onChartInit(echartsInstance): void {
+    this.echartsIntance = echartsInstance;
   }
 
-  resizeChart() {
+  public resizeChart(): void {
     if (this.echartsIntance) {
       this.echartsIntance.resize();
     }
-  }
-
-  ngOnDestroy(): void {
-    this.alive = false;
   }
 }

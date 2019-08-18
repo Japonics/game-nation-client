@@ -5,6 +5,9 @@ import {ICredentials} from '../../interfaces/credentials.interface';
 import {Router} from '@angular/router';
 import {IAuthenticated} from '../../interfaces/authenticated.interface';
 import {NotificationService} from '../../../@core/services/notification.service';
+import {NbAuthService, NbTokenService} from '@nebular/auth';
+import {catchError} from 'rxjs/operators';
+import {throwError} from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -16,6 +19,8 @@ export class LoginFormComponent {
   public loginForm: FormGroup;
 
   constructor(private _authService: AuthService,
+              private _nbAuthService: NbAuthService,
+              private _nbTokenService: NbTokenService,
               private _notificationService: NotificationService,
               private _router: Router) {
     this.loginForm = new FormGroup({
@@ -37,23 +42,15 @@ export class LoginFormComponent {
 
     const credentials: ICredentials = this.loginForm.value;
 
-    // this._authService
-    //   .login(credentials)
-    //   .subscribe(
-    //     (authenticated: IAuthenticated) => {
-    //       this._authManagerService.loginUser(authenticated);
-    //       this._authService.loadToken(authenticated.token);
-    //       this._router.navigate(['/']).then(
-    //         () => {
-    //           // TODO add translation
-    //           this._showMessage(`Witaj, ${authenticated.user.username}`, 'Cześć!');
-    //         }
-    //       );
-    //     },
-    //     (message: string) => {
-    //       this._showMessage(message, 'Close');
-    //     }
-    //   );
+    // TODO add const with strategy
+    this._nbAuthService
+      .authenticate('username', credentials)
+      .subscribe(result => {
+        console.log(result);
+        if (result.isSuccess()) {
+
+        }
+      });
   }
 
   public hasError(field: string, validator: string): boolean {

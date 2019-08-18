@@ -8,6 +8,7 @@ import {RegisterFormComponent} from './@auth/components/register-form/register-f
 import {LandingPageOutletComponent} from './client-module/components/landing-page/landing-page-outlet/landing-page-outlet.component';
 import {ADMIN_ROUTING_MODULE} from './admin-module/admin-routing.module';
 import {AdminOutletComponent} from './admin-module/components/admin-outlet/admin-outlet.component';
+import {IsAuthenticatedGuard} from './@core/guards/is-authenticated.guard';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
       {
         path: 'admin',
         component: AdminOutletComponent,
-        children: ADMIN_ROUTING_MODULE
+        children: ADMIN_ROUTING_MODULE,
+        canActivate: [IsAuthenticatedGuard]
       }
     ]
   }

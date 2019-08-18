@@ -11,7 +11,7 @@ import {
   NbButtonModule,
   NbSelectModule,
   NbIconModule,
-  NbThemeModule,
+  NbThemeModule, NbCardModule,
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {
@@ -31,6 +31,8 @@ import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {SearchInputComponent} from './components/search-input/search-input.component';
 import {MatchValueDirective} from './directives/match-value.directive';
+import {NotFoundComponent} from './components/not-found/not-found.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -44,7 +46,9 @@ const NB_MODULES = [
   NbSelectModule,
   NbIconModule,
   NbEvaIconsModule,
+  NbCardModule
 ];
+
 const COMPONENTS = [
   HeaderComponent,
   FooterComponent,
@@ -52,7 +56,9 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  NotFoundComponent
 ];
+
 const PIPES = [
   CapitalizePipe,
   PluralPipe,
@@ -60,12 +66,13 @@ const PIPES = [
   TimingPipe,
   NumberWithCommasPipe,
 ];
+
 const DIRECTIVES = [
   MatchValueDirective
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
+  imports: [CommonModule, ...NB_MODULES, TranslateModule],
   exports: [CommonModule, ...PIPES, ...DIRECTIVES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES, ...DIRECTIVES],
 })
@@ -76,7 +83,7 @@ export class ThemeModule {
       providers: [
         ...NbThemeModule.forRoot(
           {
-            name: 'default',
+            name: 'dark',
           },
           [DARK_THEME],
         ).providers,

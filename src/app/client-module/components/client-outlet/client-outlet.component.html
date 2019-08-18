@@ -1,4 +1,13 @@
-<app-top-bar></app-top-bar>
-<div class="content">
-  <router-outlet></router-outlet>
-</div>
+<nb-layout windowMode>
+  <nb-layout-header fixed>
+    <app-top-bar></app-top-bar>
+  </nb-layout-header>
+
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+    <app-footer></app-footer>
+  </nb-layout-footer>
+</nb-layout>
