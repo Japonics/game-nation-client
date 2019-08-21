@@ -18,7 +18,10 @@
     "ADMIN_DASHBOARD": "Panel zarządzania"
   },
   "INTERFACE": {
-    "SEARCH": "Szukaj..."
+    "SEARCH": "Szukaj",
+    "EDIT": "Edytuj",
+    "ADD": "Dodaj",
+    "CANCEL": "Anuluj"
   },
   "VALIDATOR": {
     "IS_REQUIRED": "Pole jest wymagane"
@@ -32,5 +35,15 @@
     "MANAGE":  "Zarządzaj",
     "ADMINS": "Administratorzy",
     "USERS": "Użytkownicy"
+  },
+  "GAMES": {
+    "TOP_RATED": "Najwyżej oceniane",
+    "BESTSELLER": "Najczęściej kupowane"
+  },
+  "CATEGORIES": {
+    "GAMES_CATEGORIES": "Gatunki"
+  },
+  "COLUMNS": {
+    "NAME": "Nazwa"
   }
 }

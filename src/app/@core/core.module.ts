@@ -48,6 +48,7 @@ import {SecurityCamerasService} from './mock/security-cameras.service';
 import {MockDataModule} from './mock/mock-data.module';
 import {environment} from '../../environments/environment';
 import {IsAuthenticatedGuard} from './guards/is-authenticated.guard';
+import {RoleProvider} from './providers/role.provider';
 
 const DATA_SERVICES = [
   {provide: UserData, useClass: UserService},
@@ -70,13 +71,6 @@ const DATA_SERVICES = [
   {provide: VisitorsAnalyticsData, useClass: VisitorsAnalyticsService},
   {provide: SecurityCamerasData, useClass: SecurityCamerasService},
 ];
-
-export class NbSimpleRoleProvider extends NbRoleProvider {
-  getRole() {
-    // here you could provide any role based on any @auth flow
-    return observableOf('guest');
-  }
-}
 
 export const NB_CORE_PROVIDERS = [
   ...MockDataModule.forRoot().providers,
@@ -128,11 +122,12 @@ export const NB_CORE_PROVIDERS = [
   }).providers,
 
   {
-    provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
+    provide: NbRoleProvider, useClass: RoleProvider,
   },
   AnalyticsService,
   LayoutService,
-  IsAuthenticatedGuard
+  IsAuthenticatedGuard,
+  RoleProvider
 ];
 
 @NgModule({

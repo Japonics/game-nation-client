@@ -7,6 +7,7 @@ import {
 import {NotFoundComponent} from '../@theme/components/not-found/not-found.component';
 import {UsersManagementOutletComponent} from './components/users/components/users-management-outlet/users-management-outlet.component';
 import {OrdersManagementOutletComponent} from './components/orders/components/orders-management-outlet/orders-management-outlet.component';
+import {GamesManageListComponent} from './components/games/components/games-manage-list/games-manage-list.component';
 
 export const ADMIN_ROUTING_MODULE: Routes = [
   {
@@ -16,7 +17,12 @@ export const ADMIN_ROUTING_MODULE: Routes = [
   {
     path: 'games',
     component: GamesManagementOutletComponent,
-    children: []
+    children: [
+      {
+        path: '',
+        component: GamesManageListComponent
+      }
+    ]
   },
   {
     path: 'categories',

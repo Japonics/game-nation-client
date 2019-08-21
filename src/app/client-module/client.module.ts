@@ -14,6 +14,7 @@ import {GamesPageOutletComponent} from './components/games-page/games-page-outle
 import {LandingPageOutletComponent} from './components/landing-page/landing-page-outlet/landing-page-outlet.component';
 import {ProfilePageOutletComponent} from './components/profile-page/profile-page-outlet/profile-page-outlet.component';
 import {
+  NbAccordionModule,
   NbActionsModule,
   NbAlertModule,
   NbButtonModule,
@@ -23,11 +24,17 @@ import {
   NbListModule,
   NbOverlayService,
   NbPopoverModule,
-  NbSearchModule,
+  NbSearchModule, NbTreeGridModule,
   NbUserModule
 } from '@nebular/theme';
 import {NbAuthModule} from '@nebular/auth';
 import {ThemeModule} from '../@theme/theme.module';
+import {TopGamesSliderComponent} from './components/landing-page/top-games-slider/top-games-slider.component';
+import {TopRatedGamesSliderComponent} from './components/landing-page/top-rated-games-slider/top-rated-games-slider.component';
+import {TopSoldGamesSliderComponent} from './components/landing-page/top-sold-games-slider/top-sold-games-slider.component';
+import {CategoriesSliderComponent} from './components/landing-page/categories-slider/categories-slider.component';
+import {CarouselModule} from 'ngx-carousel-lib';
+import {SlideshowModule} from 'ng-simple-slideshow';
 
 const MODULES = [
   CommonModule,
@@ -47,7 +54,9 @@ const MODULES = [
   NbAuthModule,
   ThemeModule,
   NbSearchModule,
-  NbLayoutModule
+  NbLayoutModule,
+  CarouselModule,
+  NbTreeGridModule
 ];
 
 const SERVICES = [
@@ -64,11 +73,15 @@ const COMPONENTS = [
   CategoriesPageOutletComponent,
   GamesPageOutletComponent,
   LandingPageOutletComponent,
-  ProfilePageOutletComponent
+  ProfilePageOutletComponent,
+  TopGamesSliderComponent,
+  TopRatedGamesSliderComponent,
+  TopSoldGamesSliderComponent,
+  CategoriesSliderComponent
 ];
 
 @NgModule({
-  imports: [...MODULES],
+  imports: [...MODULES, SlideshowModule, NbAccordionModule],
   providers: [...SERVICES],
   declarations: [...COMPONENTS]
 })

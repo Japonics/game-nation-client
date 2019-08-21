@@ -11,7 +11,9 @@ import {
   NbButtonModule,
   NbSelectModule,
   NbIconModule,
-  NbThemeModule, NbCardModule,
+  NbThemeModule,
+  NbCardModule,
+  NbTreeGridModule,
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {
@@ -33,6 +35,7 @@ import {SearchInputComponent} from './components/search-input/search-input.compo
 import {MatchValueDirective} from './directives/match-value.directive';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {TranslateModule} from '@ngx-translate/core';
+import {RouterModule} from '@angular/router';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -46,7 +49,8 @@ const NB_MODULES = [
   NbSelectModule,
   NbIconModule,
   NbEvaIconsModule,
-  NbCardModule
+  NbCardModule,
+  NbTreeGridModule
 ];
 
 const COMPONENTS = [
@@ -56,7 +60,7 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-  NotFoundComponent
+  NotFoundComponent,
 ];
 
 const PIPES = [
@@ -68,11 +72,11 @@ const PIPES = [
 ];
 
 const DIRECTIVES = [
-  MatchValueDirective
+  MatchValueDirective,
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES, TranslateModule],
+  imports: [CommonModule, ...NB_MODULES, TranslateModule, RouterModule],
   exports: [CommonModule, ...PIPES, ...DIRECTIVES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES, ...DIRECTIVES],
 })

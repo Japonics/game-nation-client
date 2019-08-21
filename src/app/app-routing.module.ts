@@ -9,6 +9,7 @@ import {LandingPageOutletComponent} from './client-module/components/landing-pag
 import {ADMIN_ROUTING_MODULE} from './admin-module/admin-routing.module';
 import {AdminOutletComponent} from './admin-module/components/admin-outlet/admin-outlet.component';
 import {IsAuthenticatedGuard} from './@core/guards/is-authenticated.guard';
+import {IsAdminGuard} from './@core/guards/is-admin.guard';
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
         path: 'admin',
         component: AdminOutletComponent,
         children: ADMIN_ROUTING_MODULE,
-        canActivate: [IsAuthenticatedGuard]
+        canActivate: [IsAuthenticatedGuard, IsAdminGuard]
       }
     ]
   }

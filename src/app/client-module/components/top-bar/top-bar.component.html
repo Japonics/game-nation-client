@@ -1,6 +1,6 @@
 <div class="header-container">
   <div class="logo-container">
-    <a class="logo" href="#">ngx-<span>admin</span></a>
+    <a class="logo" [routerLink]="['/']">{{ 'APP.NAME' | translate }}</a>
   </div>
 </div>
 
@@ -25,6 +25,7 @@
     <nb-action class="control-item" icon="bell-outline"></nb-action>
     <nb-action class="user-action">
       <nb-user [nbContextMenu]="menu"
+               *ngIf="menu.length"
                [onlyPicture]="userPictureOnly"
                [name]="user?.username"
                [picture]="user?.username">
