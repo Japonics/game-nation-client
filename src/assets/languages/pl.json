@@ -11,7 +11,12 @@
     "SIGN_IN": "Zarejestruj",
     "EMAIL": "Adres e-mail",
     "PASSWORD_CONFIRM": "Powtórz hasło",
-    "LOG_OUT": "Wyloguj"
+    "LOG_OUT": "Wyloguj",
+    "SUCCESSFULLY_LOGGED": "Witaj, {{name}}!",
+    "YOU_SUCCESSFULLY_LOGGED": "Zostałeś pomyślnie zalogowany!",
+    "WRONG_USERNAME_OR_PASSWORD": "Nieprawidłowa nazwa użytkownika lub hasło.",
+    "REGISTER_SUCCESSFULLY_WELCOME": "Witaj, {{name}} w GAME Nation!",
+    "REGISTER_SUCCESSFULLY_MESSAGE": "Twoje konto zostało utworzone - teraz możesz się zalogować!"
   },
   "USER": {
     "PROFILE": "Mój profil",
@@ -24,7 +29,8 @@
     "CANCEL": "Anuluj"
   },
   "VALIDATOR": {
-    "IS_REQUIRED": "Pole jest wymagane"
+    "IS_REQUIRED": "Pole jest wymagane",
+    "MUST_BE_EMAIL": "Nieprawidłowy adres e-mail"
   },
   "NAV": {
     "DASHBOARD":  "Dashboard",

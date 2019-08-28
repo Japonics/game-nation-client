@@ -4,6 +4,12 @@
   width: 100%;
   overflow: hidden;
 
+  ::ng-deep nb-tabset {
+    .tabset {
+      justify-content: center;
+    }
+  }
+
   .content-wrapper {
     display: flex;
     justify-content: center;
@@ -15,35 +21,6 @@
     .form-container {
       width: 500px;
       height: auto;
-
-      .tabs-container {
-        display: flex;
-        flex-direction: column;
-
-        .tabs-head {
-          display: flex;
-
-          p {
-            flex-grow: 1;
-            width: 50%;
-            border-bottom: 2px solid transparent;
-            cursor: pointer;
-            text-align: center;
-            padding: 15px 0;
-            transition: all ease-in 0.2s;
-
-            &.active {
-              background-color: #efefef;
-              border-bottom: 2px solid #673ab7;
-            }
-
-            &:hover {
-              background-color: transparentize(#efefef, 0.5);
-              border-bottom: 2px solid transparentize(#673ab7, 0.5);
-            }
-          }
-        }
-      }
     }
   }
 }

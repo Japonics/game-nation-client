@@ -10,6 +10,8 @@ import {ADMIN_ROUTING_MODULE} from './admin-module/admin-routing.module';
 import {AdminOutletComponent} from './admin-module/components/admin-outlet/admin-outlet.component';
 import {IsAuthenticatedGuard} from './@core/guards/is-authenticated.guard';
 import {IsAdminGuard} from './@core/guards/is-admin.guard';
+import {NbLogoutComponent} from '@nebular/auth';
+import {ProfilePageOutletComponent} from './client-module/components/profile-page/profile-page-outlet/profile-page-outlet.component';
 
 const routes: Routes = [
   {
@@ -23,8 +25,12 @@ const routes: Routes = [
           {
             path: '', component: AuthOutletComponent, children: [
               {path: 'login', component: LoginFormComponent},
-              {path: 'register', component: RegisterFormComponent}
+              {path: 'register', component: RegisterFormComponent},
+              {path: 'logout', component: NbLogoutComponent},
             ]
+          },
+          {
+            path: 'profile', component: ProfilePageOutletComponent, children: []
           }
         ]
       },

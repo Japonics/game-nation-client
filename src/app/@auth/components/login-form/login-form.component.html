@@ -4,14 +4,18 @@
   </header>
   <div class="form-container">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <input nbInput formControlName="username" [placeholder]="'AUTH.USERNAME' | translate"/>
-      <nb-alert status="danger" *ngIf="hasError('password', 'required')">
-        {{ 'VALIDATOR.IS_REQUIRED' | translate }}
-      </nb-alert>
-      <input nbInput formControlName="password" type="password" [placeholder]="'AUTH.PASSWORD' | translate"/>
-      <nb-alert status="danger" *ngIf="hasError('password', 'required')">
-        {{ 'VALIDATOR.IS_REQUIRED' | translate }}
-      </nb-alert>
+      <div class="form-group">
+        <input nbInput fullWidth formControlName="username" [placeholder]="'AUTH.USERNAME' | translate"/>
+        <nb-alert status="danger" *ngIf="hasError('username', 'required')">
+          {{ 'VALIDATOR.IS_REQUIRED' | translate }}
+        </nb-alert>
+      </div>
+      <div class="form-group">
+        <input nbInput fullWidth formControlName="password" type="password" [placeholder]="'AUTH.PASSWORD' | translate"/>
+        <nb-alert status="danger" *ngIf="hasError('password', 'required')">
+          {{ 'VALIDATOR.IS_REQUIRED' | translate }}
+        </nb-alert>
+      </div>
       <button type="submit" [disabled]="!loginForm.valid" nbButton>
         {{ 'AUTH.LOG_IN' | translate }}
       </button>

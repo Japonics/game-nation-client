@@ -21,19 +21,10 @@
       form {
         display: flex;
         flex-direction: column;
-
-        button {
-          margin-top: 20px;
-        }
-
-        .mat-form-field {
-          width: 100%;
-          margin: 10px 0;
-        }
+        justify-content: center;
 
         input {
-          color: red;
-          width: 250px;
+          width: 100%;
         }
       }
     }

@@ -23,8 +23,8 @@ import {
   NbInputModule, NbLayoutModule,
   NbListModule,
   NbOverlayService,
-  NbPopoverModule,
-  NbSearchModule, NbTreeGridModule,
+  NbPopoverModule, NbRouteTabsetModule,
+  NbSearchModule, NbTabsetModule, NbTreeGridModule,
   NbUserModule
 } from '@nebular/theme';
 import {NbAuthModule} from '@nebular/auth';
@@ -81,7 +81,7 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [...MODULES, SlideshowModule, NbAccordionModule],
+  imports: [...MODULES, SlideshowModule, NbAccordionModule, NbTabsetModule, NbRouteTabsetModule],
   providers: [...SERVICES],
   declarations: [...COMPONENTS]
 })

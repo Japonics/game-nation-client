@@ -2,7 +2,6 @@ import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
 import {NbSecurityModule, NbRoleProvider} from '@nebular/security';
-import {of as observableOf} from 'rxjs';
 
 import {AnalyticsService} from './utils/analytics.service';
 import {LayoutService} from './utils/layout.service';
@@ -49,6 +48,7 @@ import {MockDataModule} from './mock/mock-data.module';
 import {environment} from '../../environments/environment';
 import {IsAuthenticatedGuard} from './guards/is-authenticated.guard';
 import {RoleProvider} from './providers/role.provider';
+import {DEFAULT_AUTH_STRATEGY} from './constants/app.constants';
 
 const DATA_SERVICES = [
   {provide: UserData, useClass: UserService},
@@ -76,10 +76,15 @@ export const NB_CORE_PROVIDERS = [
   ...MockDataModule.forRoot().providers,
   ...DATA_SERVICES,
   ...NbAuthModule.forRoot({
+    forms: {
+      logout: {
+        strategy: DEFAULT_AUTH_STRATEGY,
+      }
+    },
 
     strategies: [
       NbPasswordAuthStrategy.setup({
-        name: 'username',
+        name: DEFAULT_AUTH_STRATEGY,
         baseEndpoint: environment.baseUrl + '/api/auth',
         token: {
           class: NbAuthJWTToken,
@@ -98,6 +103,13 @@ export const NB_CORE_PROVIDERS = [
             success: '/login',
             failure: null
           }
+        },
+        logout: {
+          redirect: {
+            success: '/',
+            failure: '/',
+          },
+          endpoint: null,
         }
       }),
     ],

@@ -24,6 +24,7 @@ import {
 } from '@nebular/theme';
 import {AnalyticsService} from './@core/utils/analytics.service';
 import {LayoutService} from './@core/utils/layout.service';
+import {UserService} from './@core/services/user.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -60,7 +61,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationService,
     AnalyticsService,
     NbOverlayService,
-    LayoutService
+    LayoutService,
+    UserService
   ],
   declarations: [
     AppComponent,

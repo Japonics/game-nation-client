@@ -5,6 +5,7 @@ import {NbAuthService} from '@nebular/auth';
 import {TranslateService} from '@ngx-translate/core';
 import {NbRoleProvider} from '@nebular/security';
 import {Roles} from '../../../@core/enum/roles';
+import {UserService} from '../../../@core/services/user.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -20,43 +21,38 @@ export class TopBarComponent {
 
   constructor(private _nbAuthService: NbAuthService,
               private _translateService: TranslateService,
-              private _roleProvider: NbRoleProvider) {
-    this._nbAuthService
-      .isAuthenticated()
-      .subscribe(
-        (isAuthenticated) => {
-          this.isAuthenticated = isAuthenticated;
-          this._nbAuthService.getToken()
-            .subscribe(token => {
-              this.user = token.getPayload();
-            });
-        },
-        () => this.isAuthenticated = false
-      );
+              private _roleProvider: NbRoleProvider,
+              private _userService: UserService) {
+    this._userService
+      .getUser()
+      .subscribe(user => {
+        console.log('get user', user);
+        if (user) {
+          this.user = user;
+          this.isAuthenticated = true;
+        } else {
+          this.isAuthenticated = false;
+        }
+      });
 
     this._translateService.get('USER.PROFILE')
       .subscribe(() => {
         this._roleProvider.getRole()
           .subscribe((role: string) => {
+            this.menu = [];
+
             this.menu.push({title: this._translateService.instant('USER.PROFILE'), link: '/profile'});
+
             if (role === Roles.ADMIN) {
               this.menu.push({title: this._translateService.instant('USER.ADMIN_DASHBOARD'), link: '/admin'});
             }
+
             this.menu.push({title: this._translateService.instant('AUTH.LOG_OUT'), link: '/logout'});
           });
       });
   }
 
-  public logout(): void {
-    // TODO add const for auth strategy
-    this._nbAuthService.logout('username');
-  }
-
-  public searchResult(data: any): void {
-    console.log('test');
-  }
-
-  get userAvatar(): string {
-    return '';
+  get avatar(): string {
+    return this.user && this.user.avatar ? this.user.avatar : '/assets/images/default_avatar.png';
   }
 }

@@ -4,6 +4,7 @@ import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {IRegisterData} from '../../interfaces/register-data.interface';
 import {NotificationService} from '../../../@core/services/notification.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register-form',
@@ -16,6 +17,7 @@ export class RegisterFormComponent {
 
   constructor(private _authService: AuthService,
               private _notificationService: NotificationService,
+              private _translateService: TranslateService,
               private _router: Router) {
     this.registerForm = new FormGroup({
       username: new FormControl('', [
@@ -48,28 +50,29 @@ export class RegisterFormComponent {
       .registerUser(registerData)
       .subscribe(
         () => {
-          // TODO add translation
           this._router.navigate(['/login']).then(
             () => {
-              this._showMessage(`Dziękuje my rejestracje. Możesz zalogować się do swojego konta!`);
+              this._notificationService.showNotification({
+                type: 'success',
+                title: this._translateService.instant('AUTH.REGISTER_SUCCESSFULLY_WELCOME', {name: registerData.username}),
+                message: this._translateService.instant('AUTH.REGISTER_SUCCESSFULLY_MESSAGE')
+              });
             }
           );
         },
         (message: string) => {
-          this._showMessage(message);
+          this._notificationService.showNotification({
+            type: 'danger',
+            title: '#error',
+            message
+          });
         }
       );
   }
 
   public hasError(field: string, validator: string): boolean {
-    return this.registerForm.controls[field].errors && this.registerForm.controls[field].errors[validator];
-  }
-
-  private _showMessage(message: string): void {
-    this._notificationService.showNotification({
-      type: 'danger',
-      title: '#error',
-      message
-    });
+    return this.registerForm.touched
+      && this.registerForm.controls[field].errors
+      && this.registerForm.controls[field].errors[validator];
   }
 }
