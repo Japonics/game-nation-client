@@ -8,6 +8,7 @@ import {NotFoundComponent} from '../@theme/components/not-found/not-found.compon
 import {UsersManagementOutletComponent} from './components/users/components/users-management-outlet/users-management-outlet.component';
 import {OrdersManagementOutletComponent} from './components/orders/components/orders-management-outlet/orders-management-outlet.component';
 import {GamesManageListComponent} from './components/games/components/games-manage-list/games-manage-list.component';
+import {CategoriesManageListComponent} from './components/categories/components/categories-manage-list/categories-manage-list.component';
 
 export const ADMIN_ROUTING_MODULE: Routes = [
   {
@@ -27,7 +28,12 @@ export const ADMIN_ROUTING_MODULE: Routes = [
   {
     path: 'categories',
     component: CategoriesManagementOutletComponent,
-    children: []
+    children: [
+      {
+        path: '',
+        component: CategoriesManageListComponent
+      },
+    ]
   },
   {
     path: 'users',

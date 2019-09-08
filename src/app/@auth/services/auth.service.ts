@@ -37,7 +37,8 @@ export class AuthService implements IAuthService {
               id: response.user.id,
               username: response.user.username,
               email: response.user.email,
-              isAdmin: response.user.isAdmin
+              role: response.user.role,
+              avatar: response.user.avatar
             },
             token: response.token
           };

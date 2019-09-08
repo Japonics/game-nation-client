@@ -1,0 +1,37 @@
+<nb-card>
+  <nb-card-body>
+
+    <div class="d-flex justify-content-between my-3">
+      <input nbInput [nbFilterInput]="gamesSource"
+             id="search"
+             class="search-input"
+             [placeholder]="'INTERFACE.SEARCH' | translate"/>
+      <button nbButton size="small" outline status="primary" (click)="addGame()">
+        {{ 'INTERFACE.ADD' | translate }}
+      </button>
+    </div>
+
+    <table [nbTreeGrid]="gamesSource">
+      <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+      <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+
+      <ng-container [nbTreeGridColumnDef]="customColumn">
+        <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>{{ getColumnName(customColumn) | translate }}</th>
+        <td nbTreeGridCell *nbTreeGridCellDef="let row">
+          {{row.data[customColumn]}}
+        </td>
+      </ng-container>
+
+      <ng-container *ngFor="let column of defaultColumns" [nbTreeGridColumnDef]="column">
+        <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>{{ getColumnName(column) | translate }}</th>
+        <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column] || '-'}}</td>
+        <td *nbTreeGridCellDef="let row">
+          <button nbButton size="small" outline status="primary" (click)="editGame(row.data)">
+            {{ 'INTERFACE.EDIT' | translate }}
+          </button>
+        </td>
+      </ng-container>
+    </table>
+
+  </nb-card-body>
+</nb-card>

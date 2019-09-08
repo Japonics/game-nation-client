@@ -1,0 +1,56 @@
+<nb-card>
+  <nb-card-header>
+    {{ (category.id ? 'INTERFACE.EDIT' : 'INTERFACE.ADD') | translate }}
+  </nb-card-header>
+  <nb-card-body>
+    <form #form class="d-flex flex-column" [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+      <div class="form-group my-1">
+        <label for="name">{{ 'COLUMNS.NAME' | translate }}</label>
+        <input
+          fullWidth
+          type="text"
+          formControlName="name"
+          id="name"
+          class="form-control"
+          nbInput
+          [status]="getStatusFor('name')"
+          [placeholder]="'COLUMNS.NAME' | translate">
+      </div>
+      <div class="form-group my-1">
+        <label for="description">{{ 'COLUMNS.DESCRIPTION' | translate }}</label>
+        <textarea
+          fullWidth
+          formControlName="description"
+          id="description"
+          class="form-control"
+          nbInput
+          [status]="getStatusFor('description')"
+          [placeholder]="'COLUMNS.DESCRIPTION' | translate">
+        </textarea>
+      </div>
+      <div class="form-group my-1">
+        <label for="coverImage">{{ 'COLUMNS.COVER_IMAGE' | translate }}</label>
+        <input
+          fullWidth
+          type="text"
+          formControlName="cover_image"
+          id="coverImage"
+          class="form-control"
+          nbInput
+          [status]="getStatusFor('description')"
+          [placeholder]="'COLUMNS.COVER_IMAGE' | translate">
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="d-flex justify-content-around">
+      <button nbButton size="small" outline status="warning" (click)="cancel()">
+        {{ 'INTERFACE.CANCEL' | translate }}
+      </button>
+
+      <button nbButton size="small" outline status="success" [disabled]="!categoryForm.valid" (click)="form.submit()">
+        {{ 'INTERFACE.ADD' | translate }}
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>
