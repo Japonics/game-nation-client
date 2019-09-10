@@ -1,12 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {NbMediaBreakpointsService, NbMenuItem, NbMenuService, NbSidebarService, NbThemeService} from '@nebular/theme';
 import {LayoutService} from '../../../@core/utils/layout.service';
 import {map, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import {IUser} from '../../../@auth/interfaces/user.interface';
-import {NbAuthService} from '@nebular/auth';
+import {NbAuthService, NbAuthToken} from '@nebular/auth';
 import {TranslateService} from '@ngx-translate/core';
-import {UserService} from '../../../@core/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -18,24 +17,26 @@ export class HeaderComponent implements OnDestroy {
   public user: IUser;
   public userPictureOnly: boolean = false;
   public userMenu: NbMenuItem[] = [];
+  public isAuthenticated: boolean = false;
 
   private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private _sidebarService: NbSidebarService,
-              private _menuService: NbMenuService,
-              private _themeService: NbThemeService,
-              private _nbAuthService: NbAuthService,
-              private _layoutService: LayoutService,
-              private _breakpointService: NbMediaBreakpointsService,
-              private _userService: UserService,
-              private _translationService: TranslateService) {
-    this._userService
-      .getUser()
-      .subscribe(user => {
-        if (user) {
-          this.user = user;
-        }
-      });
+  constructor(
+    private _sidebarService: NbSidebarService,
+    private _menuService: NbMenuService,
+    private _themeService: NbThemeService,
+    private _nbAuthService: NbAuthService,
+    private _layoutService: LayoutService,
+    private _breakpointService: NbMediaBreakpointsService,
+    private _translationService: TranslateService
+  ) {
+    this._nbAuthService
+      .getToken()
+      .subscribe(token => this._processToken(token));
+
+    this._nbAuthService
+      .onTokenChange()
+      .subscribe(token => this._processToken(token));
 
     this._translationService.get('USER.PROFILE')
       .subscribe(() => {
@@ -70,6 +71,15 @@ export class HeaderComponent implements OnDestroy {
     this._layoutService.changeLayoutSize();
 
     return false;
+  }
+
+  private _processToken(token: NbAuthToken): void {
+    if (!token.isValid()) {
+      this.isAuthenticated = false;
+    }
+
+    this.user = token.getPayload().user_data;
+    this.isAuthenticated = true;
   }
 
   get avatar(): string {

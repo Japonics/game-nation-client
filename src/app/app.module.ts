@@ -24,7 +24,7 @@ import {
 } from '@nebular/theme';
 import {AnalyticsService} from './@core/utils/analytics.service';
 import {LayoutService} from './@core/utils/layout.service';
-import {UserService} from './@core/services/user.service';
+import {AuthModule} from './@auth/auth.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -52,8 +52,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
+    AuthModule,
+    AdminModule,
     ClientModule,
-    AdminModule
   ],
   providers: [
     HttpClient,
@@ -62,7 +63,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AnalyticsService,
     NbOverlayService,
     LayoutService,
-    UserService
   ],
   declarations: [
     AppComponent,
