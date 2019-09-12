@@ -20,7 +20,10 @@
   },
   "USER": {
     "PROFILE": "Mój profil",
-    "ADMIN_DASHBOARD": "Panel zarządzania"
+    "ADMIN_DASHBOARD": "Panel zarządzania",
+    "YOUR_ACCOUNT": "Twój profil",
+    "YOUR_ORDERS": "Twoj zamówienia",
+    "WELCOME_USER": "Cześć, {{name}}!"
   },
   "INTERFACE": {
     "SEARCH": "Szukaj",
@@ -33,12 +36,12 @@
     "MUST_BE_EMAIL": "Nieprawidłowy adres e-mail"
   },
   "NAV": {
-    "DASHBOARD":  "Dashboard",
+    "DASHBOARD": "Dashboard",
     "MANAGEMENT": "Zarządzanie",
-    "GAMES":  "Gry",
-    "CATEGORIES":  "Kategorie",
+    "GAMES": "Gry",
+    "CATEGORIES": "Kategorie",
     "ORDERS": "Zamówienia",
-    "MANAGE":  "Zarządzaj",
+    "MANAGE": "Zarządzaj",
     "ADMINS": "Administratorzy",
     "USERS": "Użytkownicy"
   },

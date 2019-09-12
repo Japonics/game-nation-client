@@ -1,0 +1,29 @@
+<div class="d-flex flex-column">
+  <div class="d-flex align-items-center py-3">
+    <label class="search-label mr-2" for="search">{{ 'INTERFACE.SEARCH' | translate}}</label>
+    <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input">
+  </div>
+
+  <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
+
+    <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+    <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+
+    <ng-container [nbTreeGridColumnDef]="customColumn">
+      <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
+        {{customColumn}}
+      </th>
+      <td nbTreeGridCell *nbTreeGridCellDef="let row">
+
+      </td>
+    </ng-container>
+
+    <ng-container *ngFor="let column of defaultColumns" [nbTreeGridColumnDef]="column">
+      <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
+        {{column}}
+      </th>
+      <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row[column] || '-'}}</td>
+    </ng-container>
+
+  </table>
+</div>

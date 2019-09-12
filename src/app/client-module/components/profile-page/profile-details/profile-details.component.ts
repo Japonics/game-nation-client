@@ -14,20 +14,5 @@ export class ProfileDetailsComponent {
   constructor(
     private _nbAuthService: NbAuthService,
   ) {
-    this._nbAuthService
-      .getToken()
-      .subscribe(token => this._processToken(token));
-
-    this._nbAuthService
-      .onTokenChange()
-      .subscribe(token => this._processToken(token));
-  }
-
-  private _processToken(token: NbAuthToken): void {
-    if (!token.isValid()) {
-      this.user = null;
-    }
-
-    this.user = token.getPayload().user_data;
   }
 }

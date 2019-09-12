@@ -12,25 +12,51 @@ import {IsAuthenticatedGuard} from './@core/guards/is-authenticated.guard';
 import {IsAdminGuard} from './@core/guards/is-admin.guard';
 import {NbLogoutComponent} from '@nebular/auth';
 import {ProfilePageOutletComponent} from './client-module/components/profile-page/profile-page-outlet/profile-page-outlet.component';
+import {ProfileDetailsComponent} from './client-module/components/profile-page/profile-details/profile-details.component';
+import {OrdersListComponent} from './client-module/components/profile-page/orders-list/orders-list.component';
 
 const routes: Routes = [
   {
     path: '',
-
     component: AppOutletComponent,
     children: [
       {
-        path: '', component: ClientOutletComponent, children: [
-          {path: '', component: LandingPageOutletComponent},
+        path: '',
+        component: ClientOutletComponent,
+        children: [
+          {
+            path: '',
+            component: LandingPageOutletComponent
+          },
           {
             path: '', component: AuthOutletComponent, children: [
-              {path: 'login', component: LoginFormComponent},
-              {path: 'register', component: RegisterFormComponent},
-              {path: 'logout', component: NbLogoutComponent},
+              {
+                path: 'login',
+                component: LoginFormComponent,
+              },
+              {
+                path: 'register',
+                component: RegisterFormComponent,
+              },
+              {
+                path: 'logout',
+                component: NbLogoutComponent,
+              },
             ]
           },
           {
-            path: 'profile', component: ProfilePageOutletComponent, children: []
+            path: '',
+            component: ProfilePageOutletComponent,
+            children: [
+              {
+                path: 'profile',
+                component: ProfileDetailsComponent,
+              },
+              {
+                path: 'orders',
+                component: OrdersListComponent,
+              }
+            ]
           }
         ]
       },

@@ -1,0 +1,27 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  display: flex;
+  height: 100%;
+
+  .content-wrapper {
+    flex-grow: 1;
+    height: 100%;
+  }
+
+  ::ng-deep {
+    nb-route-tabset {
+      .route-tabset {
+        padding: 0;
+
+        li {
+          flex-grow: 1;
+
+          span {
+            padding-left: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
